@@ -1,0 +1,20 @@
+.box-card {
+  box-sizing: border-box;
+  width: 250px;
+  height: 500px;
+}
+
+.box-card img {
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  width: 240px;
+  margin-inline: 10px;
+  margin-top: 10px;
+}
+.box-details {
+  margin-inline: 10px;
+}
+.box-footer {
+  margin-inline: 10px;
+  margin-bottom: 10px;
+}
