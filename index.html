@@ -13,25 +13,24 @@
 
   <body>
     <header>
-      <!-- place navbar here -->
-    </header>
-    <main>
-      <div class="container" id="container-cards">
-        <div class="box-card border border-1 rounded-3 d-flex flex-column justify-content-between">
-          <div class="box-img">
-            <img src="./apple-iphone-13-single-sim-esim-128gb-5g-starlight-specifiche-jap-mlnd3j-a.jpg" alt="" />
-          </div>
-          <div class="box-details">
-            <p>Lavatrice<span>Samsung</span></p>
-            <p>descrizione</p>
-            <p>prezzo</p>
-          </div>
-          <div class="box-footer d-flex justify-content-between px-1">
-            <input type="button" class="btn btn-primary" value="Dettagli" />
-            <input type="button" class="btn btn-danger" value="Elimina" />
+      <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav me-auto mt-2 mt-lg-0"></ul>
+            <form class="d-flex my-2 my-lg-0">
+              <input class="form-control me-sm-2" type="text" placeholder="Search" />
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
           </div>
         </div>
-      </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container d-flex flex-wrap gap-2" id="container-cards"></div>
     </main>
     <footer>
       <!-- place footer here -->

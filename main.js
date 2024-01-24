@@ -71,16 +71,40 @@ const elettrodomestici = [
   },
 ];
 let getProducts = [];
-import { fetchProductGet, fetchProductDelete } from "./FetchProducts.js";
-const url_g = "https://striveschool-api.herokuapp.com/api/product/";
+import { fetchProductGet, fetchProductDelete, fetchProductPut, fetchProductPost } from "./FetchProducts.js";
+import { createBoxCard } from "./CreateCard.js";
+import { generateModal } from "./DetailsModal.js";
+
+export const url_g = "https://striveschool-api.herokuapp.com/api/product/";
 const url = "https://striveschool-api.herokuapp.com/api/product/";
 const url_d = "https://striveschool-api.herokuapp.com/api/product/65aeeea1bd5d12001890d343";
+const data = {};
 
 document.addEventListener("DOMContentLoaded", async () => {
-  //const deleteProduct = await fetchProductDelete(url_d).then((x) => console.log(x));
   getProducts = await fetchProductGet(url_g);
-  // elettrodomestici.forEach(async (oggetto) => {//
+  //function automatica x riempimento array
+  //   elettrodomestici.forEach(async (oggetto) => {
+  //     //
   //     const postProducts = await fetchProductPost(url, oggetto);
-  //});
-  console.log(getProducts);
+  //   });
+  //   //fetchProductPut(url,data)
+  getProducts.forEach((element) => {
+    createBoxCard(element.name, element.brand, element.imageUrl, element.description, element.price, element._id);
+  });
+  const btnDet = document.querySelectorAll("input[type=button]");
+
+  btnDet.forEach(function (btn) {
+    btn.addEventListener("click", (e) => {
+      let id = btn.getAttribute("data-object-id");
+      generateModal(id);
+    });
+  });
+
+  //console.log(getProducts);
+  //function automatica x pulizia array
+  //   getProducts.forEach((x) => {
+  //     const urlD = url + x._id;
+  //     fetchProductDelete(urlD).then((x) => console.log(x));
+
+  //   });
 });
