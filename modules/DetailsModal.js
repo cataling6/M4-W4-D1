@@ -1,5 +1,5 @@
 import { fetchProductGet } from "./FetchProducts.js";
-import { url_g } from "./main.js";
+import { url_g } from "../main.js";
 
 const modalDetails = document.querySelector("#modal-details");
 const imgBoxDetails = document.querySelector("#modal-img");
