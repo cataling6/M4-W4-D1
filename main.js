@@ -73,7 +73,7 @@ const elettrodomestici = [
 let getProducts = [];
 import { fetchProductGet, fetchProductDelete, fetchProductPut, fetchProductPost } from "./FetchProducts.js";
 import { createBoxCard } from "./CreateCard.js";
-import { generateModal } from "./DetailsModal.js";
+import { generateModal, clear } from "./DetailsModal.js";
 
 export const url_g = "https://striveschool-api.herokuapp.com/api/product/";
 const url = "https://striveschool-api.herokuapp.com/api/product/";
@@ -94,8 +94,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const btnDet = document.querySelectorAll("input[type=button]");
 
   btnDet.forEach(function (btn) {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("click", function () {
       let id = btn.getAttribute("data-object-id");
+
       generateModal(id);
     });
   });
