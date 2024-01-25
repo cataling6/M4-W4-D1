@@ -71,41 +71,75 @@ const elettrodomestici = [
   },
 ];
 let getProducts = [];
-import { fetchProductGet, fetchProductDelete, fetchProductPut, fetchProductPost } from "./FetchProducts.js";
-import { createBoxCard } from "./CreateCard.js";
-import { generateModal, clear } from "./DetailsModal.js";
+import { fetchProductGet, fetchProductDelete, fetchProductPut, fetchProductPost } from "./modules/FetchProducts.js";
+import { createBoxCard, createEditBoxCard } from "./modules/CreateCard.js";
+import { generateModal, clear } from "./modules/DetailsModal.js";
+import { unlockFunction } from "./modules/EditCard.js";
 
 export const url_g = "https://striveschool-api.herokuapp.com/api/product/";
 const url = "https://striveschool-api.herokuapp.com/api/product/";
 const url_d = "https://striveschool-api.herokuapp.com/api/product/65aeeea1bd5d12001890d343";
 const data = {};
+const headerCard = document.querySelectorAll(".modal-header");
 
 document.addEventListener("DOMContentLoaded", async () => {
   getProducts = await fetchProductGet(url_g);
+  let productName;
+  let productBrand;
+  let productImageUrl;
+  let productDescription;
+  let productPrice;
+  let productId;
   //function automatica x riempimento array
-  //   elettrodomestici.forEach(async (oggetto) => {
-  //     //
-  //     const postProducts = await fetchProductPost(url, oggetto);
-  //   });
+  // elettrodomestici.forEach(async (oggetto) => {
+  //   //
+  //   const postProducts = await fetchProductPost(url, oggetto);
+  // });
   //   //fetchProductPut(url,data)
+
   getProducts.forEach((element) => {
-    createBoxCard(element.name, element.brand, element.imageUrl, element.description, element.price, element._id);
+    productName = element.name;
+    productBrand = element.brand;
+    productImageUrl = element.imageUrl;
+    productDescription = element.description;
+    productPrice = element.price;
+    productId = element._id;
+
+    createBoxCard(productName, productBrand, productImageUrl, productDescription, productPrice, productId);
   });
+  console.log(getProducts);
   const btnDet = document.querySelectorAll("input[type=button]");
 
   btnDet.forEach(function (btn) {
     btn.addEventListener("click", function () {
       let id = btn.getAttribute("data-object-id");
-
+      console.log(id);
       generateModal(id);
     });
   });
 
+  let locker = document.querySelector(".bi-lock");
+  const unlocked = document.querySelector(".bi-file-earmark-lock");
+  const headerCard = document.querySelectorAll(".modal-header");
+
+  headerCard.forEach((header) => {
+    header.addEventListener("click", () => {
+      if (locker.className === "bi bi-lock fs-2") {
+        locker.className = "bi bi-unlock fs-2";
+        createEditBoxCard(productName, productBrand, productImageUrl, productDescription, productPrice, productId);
+      } else {
+        locker.className = "bi bi-lock fs-2";
+        createBoxCard(productName, productBrand, productImageUrl, productDescription, productPrice, productId);
+      }
+    });
+  });
+
+  console.log(headerCard);
+  //unlockFunction(headerCard);
   //console.log(getProducts);
   //function automatica x pulizia array
-  //   getProducts.forEach((x) => {
-  //     const urlD = url + x._id;
-  //     fetchProductDelete(urlD).then((x) => console.log(x));
-
-  //   });
+  // getProducts.forEach((x) => {
+  //   const urlD = url + x._id;
+  //   fetchProductDelete(urlD).then((x) => console.log(x));
+  // });
 });

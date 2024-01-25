@@ -16,7 +16,7 @@ export const createBoxCard = (pName, brand, img, description, price, id) => {
     <p>
     ${pName} - ${brand}
     </p>
-    <p>${description}</p>
+    <p contenteditable="true">${description}</p>
     <p>${price}</p>
     </div>
     <div class="box-footer d-flex justify-content-between px-1">
@@ -26,5 +26,22 @@ export const createBoxCard = (pName, brand, img, description, price, id) => {
     </div>`;
   containerCards.innerHTML += card;
 };
+
+// let locker = document.querySelector(".bi-lock");
+// const unlocked = document.querySelector(".bi-file-earmark-lock");
+// const headerCard = document.querySelectorAll(".modal-header");
+
+// headerCard.forEach((header) => {
+//   header.addEventListener("click", () => {
+//     if (locker.className === "bi bi-lock fs-2") {
+//       locker.className = "bi bi-unlock fs-2";
+//       createEditBoxCard(pName, brand, img, description, price, id);
+//     } else {
+//       locker.className = "bi bi-lock fs-2";
+//       createBoxCard(pName, brand, img, description, price, id);
+//     }
+//   });
+// });
+
 const createBoxDetails = () => {};
 const createBoxFooter = () => {};
