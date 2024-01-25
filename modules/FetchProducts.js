@@ -39,8 +39,7 @@ export const fetchProductDelete = async (url) => {
     console.log("Errore: ", e);
   }
 };
-export const fetchProductPut = async (url) => {
-  const data = { name: "Ventilatore2" };
+export const fetchProductPut = async (url, data) => {
   const response = await fetch(url, {
     method: "PUT",
     body: JSON.stringify(data),
