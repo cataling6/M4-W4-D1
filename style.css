@@ -28,3 +28,8 @@
   margin-inline: 10px;
   margin-bottom: 10px;
 }
+
+.input-style {
+  border: 0;
+  border-bottom: 1px solid black;
+}

@@ -1,5 +1,6 @@
 import { fetchProductGet, fetchProductPut } from "./FetchProducts.js";
 import { url_g } from "../main.js";
+export let lockerStatus = false;
 let productName;
 let productBrand;
 let productDescription;
@@ -27,7 +28,7 @@ export const generateModal = async (id) => {
   imgDetails.src = getProducts.imageUrl;
   imgBoxDetails.append(imgDetails);
 
-  modalDetails.innerHTML = `<p>${productName} </p><br><p>${productBrand}</span></p>
+  modalDetails.innerHTML = `<p>${productName} </p><p>${productBrand}</span></p>
                             <p>${productDescription}</p>
                             <p>${productPrice}</p>
                             <div class="modal-footer">
@@ -54,10 +55,10 @@ export const clear = () => {
 };
 
 export const unlockModify = (name, brand, description, price, id) => {
-  modalDetails.innerHTML = `<input type="text" class="form-control" value="${name}" id="name-${id}"></input>
-                            <input type="text" class="form-control" value="${brand}" id="brand-${id}"></input>
-                            <textarea type="text" class="form-control" id="desc-${id}">${description}</textarea>
-                            <input class="form-control"type="text" value="${price} id="price-${id}"></input>
+  modalDetails.innerHTML = `<input type="text" class="input-style" value="${name}" id="name-${id}"></input>
+                            <input type="text" class="input-style" value="${brand}" id="brand-${id}"></input>
+                            <textarea type="text" class="input-style" id="desc-${id}">${description}</textarea>
+                            <input class="input-style"type="text" value="${price} id="price-${id}"></input>
                             <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="clear()">Close</button>
                             <button type="button" class="btn btn-primary" id="save-${id}">Save changes</button>
@@ -65,7 +66,7 @@ export const unlockModify = (name, brand, description, price, id) => {
 };
 export const lockModify = (name, brand, description, price, id) => {
   console.log(id);
-  modalDetails.innerHTML = `<p>${name} </p><br><p>${brand}</span></p>
+  modalDetails.innerHTML = `<p>${name} </p><p>${brand}</span></p>
                             <p>${description}</p>
                             <p>${price}</p>
                             <div class="modal-footer">
