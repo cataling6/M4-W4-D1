@@ -70,49 +70,58 @@ const elettrodomestici = [
     price: 179.99,
   },
 ];
-let getProducts = [];
+
 import { fetchProductGet, fetchProductDelete, fetchProductPut, fetchProductPost } from "./modules/FetchProducts.js";
 import { createBoxCard } from "./modules/CreateCard.js";
-import { generateModal, clear } from "./modules/DetailsModal.js";
-import { duplicate } from "./modules/DetailsModal.js";
+import { generateModal, allowModify, saveMods, reloadMyPage, deleteCard, destroyModal } from "./modules/DetailsModal.js";
 
-export const url_g = "https://striveschool-api.herokuapp.com/api/product/";
-export const url = "https://striveschool-api.herokuapp.com/api/product/";
-const url_p = "https://striveschool-api.herokuapp.com/api/product/65b2d4da31a73f0019d5c5d8";
+export const urlGet = "https://striveschool-api.herokuapp.com/api/product/";
+
 const url_d = "https://striveschool-api.herokuapp.com/api/product/65aeeea1bd5d12001890d343";
-const data = {};
-let dataProduct = [];
-const headerCard = document.querySelectorAll(".modal-header");
+
+let dataProduct = {};
+let getProducts = [];
+const headerCard = document.querySelector(".modal-header");
 
 document.addEventListener("DOMContentLoaded", async () => {
-  getProducts = await fetchProductGet(url_g);
-  let productName;
-  let productBrand;
-  let productImageUrl;
-  let productDescription;
-  let productPrice;
-  let productId;
-
-  //fetchProductPut(url_p, data);
-
+  getProducts = await fetchProductGet(urlGet);
   getProducts.forEach((element) => {
-    // the low management complexity made me tu use an object instead of an array; I preferred order to clarity
-    dataProduct = [element.name, element.brand, element.imageUrl, element.description, element.price, element._id];
+    dataProduct = { name: element.name, brand: element.brand, description: element.description, imageUrl: element.imageUrl, price: element.price, _id: element._id };
     createBoxCard(dataProduct);
   });
-  console.log(getProducts);
-  const btnDet = document.querySelectorAll("input[type=button]");
 
-  btnDet.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      let id = btn.getAttribute("data-object-id");
-      console.log(id);
-      generateModal(id);
+  const btnsPage = document.querySelectorAll("input[type=button]");
+
+  btnsPage.forEach((btn) => {
+    btn.removeEventListener("click", () => {});
+    btn.addEventListener("click", () => {
+      let atr = btn.getAttribute("data-object-id");
+      let id;
+      if (atr.includes("det")) {
+        id = atr.split("-")[1];
+        generateModal(id);
+      } else if (atr.includes("del")) {
+        id = atr.split("-")[1];
+        deleteCard(id);
+      }
     });
   });
-  headerCard.forEach((header) => {
-    header.removeEventListener("click", duplicate);
-    header.addEventListener("click", duplicate);
+
+  headerCard.removeEventListener("click", allowModify);
+  headerCard.addEventListener("click", allowModify);
+
+  const btnSave = document.getElementById("save");
+  const btnClose = document.getElementById("close");
+
+  btnSave.addEventListener("click", async function () {
+    const id = btnSave.getAttribute("data-object-id");
+    const url_p = `https://striveschool-api.herokuapp.com/api/product/${id}`;
+    if (id != null) await saveMods(id, url_p);
+    reloadMyPage();
+  });
+
+  btnClose.addEventListener("click", function () {
+    destroyModal();
   });
 
   //function automatica x pulizia array
