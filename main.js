@@ -74,6 +74,7 @@ const elettrodomestici = [
 import { fetchProductGet, fetchProductDelete, fetchProductPut, fetchProductPost } from "./modules/FetchProducts.js";
 import { createBoxCard } from "./modules/CreateCard.js";
 import { generateModal, allowModify, saveMods, reloadMyPage, deleteCard, destroyModal } from "./modules/DetailsModal.js";
+import { insertNewProduct } from "./modules/NewProduct.js";
 
 export const urlGet = "https://striveschool-api.herokuapp.com/api/product/";
 
@@ -123,6 +124,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   btnClose.addEventListener("click", function () {
     destroyModal();
   });
+
+  const btnNew = document.getElementById("saveNewProduct");
+
+  btnNew.addEventListener("click", insertNewProduct);
 
   //function automatica x pulizia array
   // getProducts.forEach((x) => {

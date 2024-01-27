@@ -69,8 +69,8 @@ export const passIdToInputValues = (id) => {
     const productBrand = document.getElementById(`brand-${id}`);
     const productDescription = document.getElementById(`desc-${id}`);
     const productPrice = document.getElementById(`price-${id}`);
-    const data = { name: productName.value, brand: productBrand.value, description: productDescription.textContent, price: productPrice.value };
-
+    const data = { name: productName.value, brand: productBrand.value, description: productDescription.value, price: productPrice.value };
+    console.log(productDescription);
     return data;
   }
 };
