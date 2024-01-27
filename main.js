@@ -74,13 +74,14 @@ let getProducts = [];
 import { fetchProductGet, fetchProductDelete, fetchProductPut, fetchProductPost } from "./modules/FetchProducts.js";
 import { createBoxCard } from "./modules/CreateCard.js";
 import { generateModal, clear } from "./modules/DetailsModal.js";
-import { unlockModify, lockModify } from "./modules/DetailsModal.js";
+import { duplicate } from "./modules/DetailsModal.js";
 
 export const url_g = "https://striveschool-api.herokuapp.com/api/product/";
 export const url = "https://striveschool-api.herokuapp.com/api/product/";
 const url_p = "https://striveschool-api.herokuapp.com/api/product/65b2d4da31a73f0019d5c5d8";
 const url_d = "https://striveschool-api.herokuapp.com/api/product/65aeeea1bd5d12001890d343";
 const data = {};
+const dataProduct = [];
 const headerCard = document.querySelectorAll(".modal-header");
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -95,14 +96,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   //fetchProductPut(url_p, data);
 
   getProducts.forEach((element) => {
-    productName = element.name;
-    productBrand = element.brand;
-    productImageUrl = element.imageUrl;
-    productDescription = element.description;
-    productPrice = element.price;
-    productId = element._id;
-
-    createBoxCard(productName, productBrand, productImageUrl, productDescription, productPrice, productId);
+    // the low management complexity made me tu use an object instead of an array; I preferred order to clarity
+    dataProduct = [element.name, element.brand, element.imageUrl, element.description, element.price, element._id];
+    createBoxCard(dataProduct);
   });
   console.log(getProducts);
   const btnDet = document.querySelectorAll("input[type=button]");
@@ -114,10 +110,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       generateModal(id);
     });
   });
+  headerCard.forEach((header) => {
+    header.removeEventListener("click", duplicate);
+    header.addEventListener("click", duplicate);
+  });
 
-  console.log(headerCard);
-  //unlockFunction(headerCard);
-  //console.log(getProducts);
   //function automatica x pulizia array
   // getProducts.forEach((x) => {
   //   const urlD = url + x._id;

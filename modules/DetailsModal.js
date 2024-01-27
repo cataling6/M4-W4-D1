@@ -1,13 +1,14 @@
 import { fetchProductGet, fetchProductPut } from "./FetchProducts.js";
 import { url_g } from "../main.js";
-export let lockerStatus = false;
+let lockerStatus = false;
 let productName;
 let productBrand;
 let productDescription;
 let productPrice;
 let productId;
+let double = false;
 let locker = document.querySelector(".bi-lock");
-window.btnSave = document.querySelectorAll("button");
+const btnSave = document.querySelectorAll("button");
 const headerCard = document.querySelectorAll(".modal-header");
 const modalDetails = document.querySelector("#modal-details");
 let imgBoxDetails = document.querySelector("#modal-img");
@@ -37,18 +38,19 @@ export const generateModal = async (id) => {
                             </div>`;
 
   //imgBoxDetails = "";
-  headerCard.forEach((header) => {
-    header.addEventListener("click", () => {
-      if (locker.className === "bi bi-lock fs-2") {
-        locker.className = "bi bi-unlock fs-2";
-        unlockModify(productName, productBrand, productDescription, productPrice, productId);
-      } else {
-        locker.className = "bi bi-lock fs-2";
-        lockModify(productName, productBrand, productDescription, productPrice, productId);
-      }
-    });
-  });
 };
+export const duplicate = () => {
+  if (lockerStatus === false) {
+    lockerStatus = true;
+    locker.className = "bi bi-unlock fs-2";
+    unlockModify(productName, productBrand, productDescription, productPrice, productId);
+  } else {
+    lockerStatus = false;
+    locker.className = "bi bi-lock fs-2";
+    lockModify(productName, productBrand, productDescription, productPrice, productId);
+  }
+};
+
 export const clear = () => {
   imgBoxDetails = "";
   imgDetails = "";
