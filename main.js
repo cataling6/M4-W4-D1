@@ -81,7 +81,7 @@ export const url = "https://striveschool-api.herokuapp.com/api/product/";
 const url_p = "https://striveschool-api.herokuapp.com/api/product/65b2d4da31a73f0019d5c5d8";
 const url_d = "https://striveschool-api.herokuapp.com/api/product/65aeeea1bd5d12001890d343";
 const data = {};
-const dataProduct = [];
+let dataProduct = [];
 const headerCard = document.querySelectorAll(".modal-header");
 
 document.addEventListener("DOMContentLoaded", async () => {
