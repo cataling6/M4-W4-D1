@@ -12,8 +12,8 @@ export const createBoxCard = (data) => {
     <p>${data.price}<span> €</span></p>
     </div>
     <div class="box-footer d-flex justify-content-between px-1">
-    <input type="button" data-object-id="det-${data._id}" type="button" class="btn btn-primary" value="Details" data-bs-toggle="modal" data-bs-target="#detailsModal" />
-    <input type="button" data-object-id="del-${data._id}" class="btn btn-danger" value="Delete" />
+    <input type="button" data-object-id="det-${data._id}" type="button" class="btn btn-primary" value="Dettagli" data-bs-toggle="modal" data-bs-target="#detailsModal" />
+    <input type="button" data-object-id="del-${data._id}" class="btn btn-danger" value="Elimina" />
     </div>
     </div>`;
   containerCards.innerHTML += card;
