@@ -83,12 +83,13 @@ let getProducts = [];
 const headerCard = document.querySelector(".modal-header");
 
 document.addEventListener("DOMContentLoaded", async () => {
-  getProducts = await fetchProductGet(urlGet);
-
   const spinner = document.getElementById("spinner");
+
+  getProducts = await fetchProductGet(urlGet);
 
   getProducts.forEach((element) => {
     dataProduct = { name: element.name, brand: element.brand, description: element.description, imageUrl: element.imageUrl, price: element.price, _id: element._id };
+
     createBoxCard(dataProduct);
     spinner.classList.replace("d-flex", "d-none");
   });

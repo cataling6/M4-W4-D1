@@ -3,7 +3,7 @@ export const containerCards = document.getElementById("container-cards");
 export const createBoxCard = (data) => {
   const card = `<div class="box-card border border-1 rounded-3 d-flex flex-column justify-content-between">
     <div class="box-img d-flex justify-content-center">
-    <img src="${data.imageUrl}" alt="" />
+    <img src="${data.imageUrl}" alt="product_image" />
     </div>
     <div class="box-details">
     <p><b>${data.name}</b></p>

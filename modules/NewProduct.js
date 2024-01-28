@@ -8,7 +8,6 @@ export const insertNewProduct = async () => {
   const desc = document.getElementById("newDesc");
   const price = document.getElementById("newPrice");
   const data = { name: name.value, description: desc.value, brand: brand.value, imageUrl: imgUrl.value, price: price.value };
-  console.log(data);
 
   await fetchProductPost(urlGet, data);
   reloadMyPage();
