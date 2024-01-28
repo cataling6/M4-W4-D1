@@ -87,17 +87,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const spinner = document.getElementById("spinner");
 
-  setTimeout(
-    () =>
-      getProducts.forEach((element) => {
-        dataProduct = { name: element.name, brand: element.brand, description: element.description, imageUrl: element.imageUrl, price: element.price, _id: element._id };
-        createBoxCard(dataProduct);
-        spinner.classList.replace("d-flex", "d-none");
-      }),
-    2000
-  );
+  getProducts.forEach((element) => {
+    dataProduct = { name: element.name, brand: element.brand, description: element.description, imageUrl: element.imageUrl, price: element.price, _id: element._id };
+    createBoxCard(dataProduct);
+    spinner.classList.replace("d-flex", "d-none");
+  });
 
   const btnsPage = document.querySelectorAll("input[type=button]");
+  const btnClose = document.getElementById("close");
+  const btnSave = document.getElementById("save");
 
   btnsPage.forEach((btn) => {
     btn.removeEventListener("click", () => {});
@@ -109,18 +107,16 @@ document.addEventListener("DOMContentLoaded", async () => {
         generateModal(id);
       } else if (atr.includes("del")) {
         id = atr.split("-")[1];
-        //if (window.confirm("Do you really want to delete product?")) {
-        deleteCard(id);
-        //}
+        if (window.confirm("Do you really want to delete product?")) {
+          deleteCard(id);
+        }
       }
     });
   });
-  const btnClose = document.getElementById("close");
 
   headerCard.removeEventListener("click", allowModify);
   headerCard.addEventListener("click", allowModify);
 
-  const btnSave = document.getElementById("save");
   btnSave.addEventListener("click", async function () {
     const id = btnSave.getAttribute("data-object-id");
     const urlPut = `https://striveschool-api.herokuapp.com/api/product/${id}`;
@@ -134,15 +130,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const btnNew = document.getElementById("saveNewProduct");
   btnNew.addEventListener("click", insertNewProduct);
-
-  //function automatica x pulizia array
-  // getProducts.forEach((x) => {
-  //   const urlD = urlGet + x._id;
-  //   fetchProductDelete(urlD).then((x) => console.log(x));
-  // });
-
-  // //function automatica x riempimento array
-  // elettrodomestici.forEach(async (oggetto) => {
-  //   const postProducts = await fetchProductPost(urlGet, oggetto);
-  // });
 });
