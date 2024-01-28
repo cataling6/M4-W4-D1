@@ -97,5 +97,5 @@ export const deleteCard = async (id) => {
 export const destroyModal = () => {
   lockerStatus = false;
   locker.className = "bi bi-lock fs-2";
-  resetModal();
+  //resetModal();
 };
