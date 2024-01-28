@@ -84,10 +84,18 @@ const headerCard = document.querySelector(".modal-header");
 
 document.addEventListener("DOMContentLoaded", async () => {
   getProducts = await fetchProductGet(urlGet);
-  getProducts.forEach((element) => {
-    dataProduct = { name: element.name, brand: element.brand, description: element.description, imageUrl: element.imageUrl, price: element.price, _id: element._id };
-    createBoxCard(dataProduct);
-  });
+  const spinner = document.getElementById("spinner");
+
+  setTimeout(
+    () =>
+      getProducts.forEach((element) => {
+        dataProduct = { name: element.name, brand: element.brand, description: element.description, imageUrl: element.imageUrl, price: element.price, _id: element._id };
+        createBoxCard(dataProduct);
+        spinner.classList.replace("d-flex", "d-none");
+      }),
+    2000
+  );
+
   const btnSave = document.getElementById("save");
   const btnClose = document.getElementById("close");
   const btnNew = document.getElementById("saveNewProduct");
