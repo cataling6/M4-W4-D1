@@ -71,14 +71,12 @@ const elettrodomestici = [
   },
 ];
 
-import { fetchProductGet, fetchProductDelete, fetchProductPut, fetchProductPost } from "./modules/FetchProducts.js";
+import { fetchProductGet } from "./modules/FetchProducts.js";
 import { createBoxCard } from "./modules/CreateCard.js";
 import { generateModal, allowModify, saveMods, reloadMyPage, deleteCard, destroyModal } from "./modules/DetailsModal.js";
 import { insertNewProduct } from "./modules/NewProduct.js";
 
 export const urlGet = "https://striveschool-api.herokuapp.com/api/product/";
-
-const url_d = "https://striveschool-api.herokuapp.com/api/product/65aeeea1bd5d12001890d343";
 
 let dataProduct = {};
 let getProducts = [];
@@ -90,7 +88,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     dataProduct = { name: element.name, brand: element.brand, description: element.description, imageUrl: element.imageUrl, price: element.price, _id: element._id };
     createBoxCard(dataProduct);
   });
-
+  const btnSave = document.getElementById("save");
+  const btnClose = document.getElementById("close");
+  const btnNew = document.getElementById("saveNewProduct");
   const btnsPage = document.querySelectorAll("input[type=button]");
 
   btnsPage.forEach((btn) => {
@@ -103,7 +103,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         generateModal(id);
       } else if (atr.includes("del")) {
         id = atr.split("-")[1];
-        deleteCard(id);
+        if (window.confirm("Do you really want to delete product?")) {
+          deleteCard(id);
+        }
       }
     });
   });
@@ -111,13 +113,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   headerCard.removeEventListener("click", allowModify);
   headerCard.addEventListener("click", allowModify);
 
-  const btnSave = document.getElementById("save");
-  const btnClose = document.getElementById("close");
-
   btnSave.addEventListener("click", async function () {
     const id = btnSave.getAttribute("data-object-id");
-    const url_p = `https://striveschool-api.herokuapp.com/api/product/${id}`;
-    if (id != null) await saveMods(id, url_p);
+    const urlPut = `https://striveschool-api.herokuapp.com/api/product/${id}`;
+    if (id != null) await saveMods(id, urlPut);
     reloadMyPage();
   });
 
@@ -125,19 +124,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     destroyModal();
   });
 
-  const btnNew = document.getElementById("saveNewProduct");
-
   btnNew.addEventListener("click", insertNewProduct);
-
-  //function automatica x pulizia array
-  // getProducts.forEach((x) => {
-  //   const urlD = url + x._id;
-  //   fetchProductDelete(urlD).then((x) => console.log(x));
-  // });
-
-  // //function automatica x riempimento array
-  // elettrodomestici.forEach(async (oggetto) => {
-  //   //
-  //   const postProducts = await fetchProductPost(url, oggetto);
-  // });
 });

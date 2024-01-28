@@ -16,17 +16,13 @@
     <header>
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">Products</a>
           <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#newProductModal">Add New Product</button>
           <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav me-auto mt-2 mt-lg-0"></ul>
-            <form class="d-flex my-2 my-lg-0">
-              <input class="form-control me-sm-2" type="text" placeholder="Search" />
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
           </div>
         </div>
       </nav>
@@ -36,14 +32,14 @@
       <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" add>
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header d-flex justify-content-between">
+            <div class="modal-header d-flex bg-light">
               <i class="bi bi-lock fs-2"></i>
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Allow Modify&nbsp;</h1>
+              <h1 class="modal-title fs-5" id="allowModify">Allow Modify&nbsp;</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="box-img d-flex justify-content-center" id="modal-img"></div>
-              <div class="box-details d-flex flex-column gap-2" id="modal-details"></div>
+              <div class="box-details d-flex flex-column gap-2 border rounded-2 p-1 m-1" id="modal-details"></div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="close" data-object-id="" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="save" data-object-id="" data-bs-dismiss="modal">Save changes</button>

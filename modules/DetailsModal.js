@@ -70,7 +70,7 @@ export const passIdToInputValues = (id) => {
     const productDescription = document.getElementById(`desc-${id}`);
     const productPrice = document.getElementById(`price-${id}`);
     const data = { name: productName.value, brand: productBrand.value, description: productDescription.value, price: productPrice.value };
-    console.log(productDescription);
+
     return data;
   }
 };
@@ -89,7 +89,7 @@ export const reloadMyPage = () => {
 
 export const deleteCard = async (id) => {
   const urlDelete = urlGet + id;
-  console.log(urlDelete);
+
   await fetchProductDelete(urlDelete).then((x) => console.log(x));
   reloadMyPage();
 };
@@ -97,5 +97,4 @@ export const deleteCard = async (id) => {
 export const destroyModal = () => {
   lockerStatus = false;
   locker.className = "bi bi-lock fs-2";
-  resetModal();
 };

@@ -32,5 +32,13 @@
 
 .input-style {
   border: 0;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid red;
+  outline: none;
+}
+
+.modal-header {
+  margin: 1px;
+}
+.btn-close {
+  margin: 0;
 }
