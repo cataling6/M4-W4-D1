@@ -6,10 +6,10 @@ export const createBoxCard = (data) => {
     <img src="${data.imageUrl}" alt="" />
     </div>
     <div class="box-details">
-    <p>${data.name}</p>
+    <p><b>${data.name}</b></p>
     <p>${data.brand}</p>
     <p>${data.description}</p>
-    <p>${data.price}</p>
+    <p>${data.price}<span> €</span></p>
     </div>
     <div class="box-footer d-flex justify-content-between px-1">
     <input type="button" data-object-id="det-${data._id}" type="button" class="btn btn-primary" value="Dettagli" data-bs-toggle="modal" data-bs-target="#detailsModal" />
