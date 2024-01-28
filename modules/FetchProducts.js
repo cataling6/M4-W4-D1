@@ -6,7 +6,7 @@ export const fetchProductPost = async (url, data) => {
     mode: "cors",
     body: JSON.stringify(data),
     headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFlZWQxNWJkNWQxMjAwMTg5MGQzNDEiLCJpYXQiOjE3MDU5NjI3NzMsImV4cCI6MTcwNzE3MjM3M30.3sWRRW1GrjoPDoE6wldlCMnKTc_3zNdr9OnKfLE72RQ",
+      Authorization: `Bearer ${key}`,
       "Content-type": "application/json; charset=UTF-8",
     },
   });
@@ -33,7 +33,7 @@ export const fetchProductDelete = async (url) => {
     const response = await fetch(url, {
       method: "DELETE",
       headers: {
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFlZWQxNWJkNWQxMjAwMTg5MGQzNDEiLCJpYXQiOjE3MDU5NjI3NzMsImV4cCI6MTcwNzE3MjM3M30.3sWRRW1GrjoPDoE6wldlCMnKTc_3zNdr9OnKfLE72RQ",
+        Authorization: `Bearer ${key}`,
         "Content-type": "application/json; charset=UTF-8",
       },
     });
@@ -46,7 +46,7 @@ export const fetchProductPut = async (url, data) => {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {
-      Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFlZWQxNWJkNWQxMjAwMTg5MGQzNDEiLCJpYXQiOjE3MDU5NjI3NzMsImV4cCI6MTcwNzE3MjM3M30.3sWRRW1GrjoPDoE6wldlCMnKTc_3zNdr9OnKfLE72RQ",
+      Authorization: `Bearer ${key}`,
       "Content-type": "application/json; charset=UTF-8",
     },
   });
