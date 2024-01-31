@@ -20,9 +20,7 @@ export const fetchProductGet = async (url) => {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
-    if (!response.ok) {
-      throw new Error("Errore nella richiesta");
-    }
+
     return await response.json();
   } catch (e) {
     console.error("Si è verificato un errore:", e);
